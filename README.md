@@ -52,7 +52,9 @@ Go to project directory and run (make sure you have node installed first)
 
 ## Documentation
 
-[Documentation](https://tailwind-dashboard-template-dashwind.vercel.app/documentation)
+[Template Documentation](https://tailwind-dashboard-template-dashwind.vercel.app/documentation)
+
+[Project Documentation](./docs/structure-folder.md)
 
 ## Page Examples
 

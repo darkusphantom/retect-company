@@ -21,11 +21,24 @@ function Login(){
 
         if(loginObj.emailId.trim() === "")return setErrorMessage("Email Id is required! (use any value)")
         if(loginObj.password.trim() === "")return setErrorMessage("Password is required! (use any value)")
-        else{
-            setLoading(true)
-            // Call API to check user credentials and save token in localstorage
-            localStorage.setItem("token", "DumyTokenHere")
-            setLoading(false)
+
+        // Verificar si el usuario está registrado
+        const storedUser = sessionStorage.getItem(loginObj.emailId)
+        if (!storedUser) {
+            return setErrorMessage("User not found! Please register.")
+        }
+
+        const user = JSON.parse(storedUser)
+        if (user.password !== loginObj.password) {
+            return setErrorMessage("Incorrect password!")
+        }
+
+        // Simular el inicio de sesión
+        localStorage.setItem("token", "DummyToken")
+        setLoading(false)
+        
+        // Redirigir solo si el token se ha establecido
+        if (sessionStorage.getItem("token")) {
             window.location.href = '/app/welcome'
         }
     }

@@ -1,5 +1,5 @@
 import {useState, useRef} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import LandingIntro from './LandingIntro'
 import ErrorText from  '../../components/Typography/ErrorText'
 import InputText from '../../components/Input/InputText'
@@ -15,6 +15,7 @@ function Register(){
     const [loading, setLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [registerObj, setRegisterObj] = useState(INITIAL_REGISTER_OBJ)
+    const navigate = useNavigate()
 
     const submitForm = (e) =>{
         e.preventDefault()
@@ -25,10 +26,10 @@ function Register(){
         if(registerObj.password.trim() === "")return setErrorMessage("Password is required! (use any value)")
         else{
             setLoading(true)
-            // Call API to check user credentials and save token in localstorage
-            localStorage.setItem("token", "DumyTokenHere")
+            // Simular el registro
+            sessionStorage.setItem(registerObj.emailId, JSON.stringify(registerObj))
+            navigate('/login')
             setLoading(false)
-            window.location.href = '/app/welcome'
         }
     }
 
